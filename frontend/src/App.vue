@@ -1,13 +1,21 @@
 <template>
   <div id="app">
     <div id="nav">
+      <top-navbar></top-navbar>
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
     <router-view/>
   </div>
 </template>
-
+<script>
+import Top from '@/components/navbar.vue'
+export default {
+  components:{
+    'top-navbar':Top
+  },
+}
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
