@@ -1,20 +1,11 @@
 <template>
-  <div>
-  <b-navbar toggleable="sm" type="light" variant="light">
-    <b-navbar-toggle target="nav-text-collapse"></b-navbar-toggle>
-<b-navbar-nav>
-    <b-navbar-brand>
-       <b-link :to="'/'">HygeiaTech.IO</b-link>
-    </b-navbar-brand>
-</b-navbar-nav>
-    <b-collapse id="nav-text-collapse" is-nav>
-      <b-navbar-nav>
-        <b-nav-text><b-link :to="'/about'">Our mission</b-link></b-nav-text>
-      </b-navbar-nav>
-    </b-collapse>
-  </b-navbar>
-  
-</div>
+  <div id="app">
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </div>
+    <router-view/>
+  </div>
 </template>
 
 <style>
@@ -24,7 +15,6 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  
 }
 
 #nav {
