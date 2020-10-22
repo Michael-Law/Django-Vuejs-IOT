@@ -7,7 +7,7 @@
 
       <b-collapse id="navbar-toggle-collapse" is-nav>
         <b-navbar-nav class="mr-auto">
-          <b-nav-item href="#">Link 1</b-nav-item>
+          <b-nav-item href="/">Services</b-nav-item>
           <b-nav-item to="/about">About us</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
