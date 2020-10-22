@@ -17,3 +17,11 @@
 <script>
 export default {};
 </script>
+
+<style scoped>
+#nav a.navbar-brand {
+  font-family: "Pacifico", cursive;
+  font-size: 30pt;
+  color: #2c3e50;
+}
+</style>

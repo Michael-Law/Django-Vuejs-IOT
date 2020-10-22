@@ -5,18 +5,20 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 <script>
-import Top from '@/components/navbar.vue'
+import Top from "@/components/navbar.vue";
 export default {
-  components:{
-    'top-navbar':Top
+  components: {
+    "top-navbar": Top,
   },
-}
+};
 </script>
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
