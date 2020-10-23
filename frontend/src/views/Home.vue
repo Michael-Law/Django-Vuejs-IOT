@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <navbar />
     <h1>Simplify your logistics</h1>
     <p>
       Powered by artficial intelligence and our mesh of internet of things
@@ -22,9 +23,11 @@
 
 <script>
 // @ is an alias to /src
-
+import navbar from "@/components/navbar.vue";
 export default {
   name: "Home",
-  components: {},
+  components: {
+    navbar,
+  },
 };
 </script>
