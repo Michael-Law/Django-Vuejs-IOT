@@ -11,6 +11,12 @@
           <b-nav-item to="/about">About us</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
+      <b-collapse id="navbar-toggle-collapse" is-nav>
+        <b-navbar-nav class="ml-auto">
+          <b-nav-item href="/">Login</b-nav-item>
+          <b-nav-item to="/about">Signup</b-nav-item>
+        </b-navbar-nav>
+      </b-collapse>
     </b-navbar>
   </div>
 </template>
