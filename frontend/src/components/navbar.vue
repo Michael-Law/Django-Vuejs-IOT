@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-toolbar>
+    <v-toolbar class="pa-0">
       <v-toolbar-title class="AnotherStyle">
         <span router-link to="/">HygeaTech </span>
         <span class="mystyle">| Logistics Services</span>
@@ -21,15 +21,17 @@ export default {};
 </script>
 
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css?family=Questrial");
+@import url("https://fonts.googleapis.com/css2?family=Pathway+Gothic+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
 
 .AnotherStyle {
   font-family: "Pacifico", cursive;
 }
 .mystyle {
-  font-family: "Questrial";
+  font-family: "Pathway Gothic One", sans-serif;
+}
+
+.v-toolbar__content {
+  padding: 10px !important;
 }
 </style>
-
-
