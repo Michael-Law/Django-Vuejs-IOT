@@ -1,23 +1,18 @@
 <template>
   <div>
-    <b-navbar toggleable="sm" type="light" variant="light">
-      <b-navbar-toggle target="nav-text-collapse"></b-navbar-toggle>
+    <v-toolbar>
+      <v-toolbar-title class="AnotherStyle">
+        <span router-link to="/">HygeaTech </span>
+        <span class="mystyle">| Logistics Services</span>
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
 
-      <b-navbar-brand href="/">HygeiaTech.IO</b-navbar-brand>
-
-      <b-collapse id="navbar-toggle-collapse" is-nav>
-        <b-navbar-nav class="mr-auto">
-          <b-nav-item href="/">Services</b-nav-item>
-          <b-nav-item to="/about">About us</b-nav-item>
-        </b-navbar-nav>
-      </b-collapse>
-      <b-collapse id="navbar-toggle-collapse" is-nav>
-        <b-navbar-nav class="ml-auto">
-          <b-nav-item href="/">Login</b-nav-item>
-          <b-nav-item to="/about">Signup</b-nav-item>
-        </b-navbar-nav>
-      </b-collapse>
-    </b-navbar>
+      <v-row dense align="end" align-content="end">
+        <v-spacer />
+        <v-btn text> Sign in </v-btn>
+        <v-btn text> Register </v-btn>
+      </v-row>
+    </v-toolbar>
   </div>
 </template>
 
@@ -25,14 +20,16 @@
 export default {};
 </script>
 
-<style scoped>
-#nav a.navbar-brand {
-  font-family: "Pacifico", cursive;
-  font-size: 25pt;
-  color: #384552;
-}
+<style lang="scss">
+@import url("https://fonts.googleapis.com/css?family=Questrial");
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
 
-#nav a {
-  font-family: "Roboto", sans-serif;
+.AnotherStyle {
+  font-family: "Pacifico", cursive;
+}
+.mystyle {
+  font-family: "Questrial";
 }
 </style>
+
+
