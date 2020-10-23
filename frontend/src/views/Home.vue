@@ -1,13 +1,28 @@
 <template>
   <div class="home">
     <navbar />
-    <h1>Simplify your logistics</h1>
-    <p>
-      Powered by artficial intelligence and our mesh of internet of things
-      devices, our software will simplify your scheduling, logistics plannig and
-      reduce drastically your costs, thus using our sophisticated intelligent
-      nework, easily plan your course of action.
-    </p>
+    <b-card no-body class="overflow-hidden" style="max-width: 100%">
+      <b-row no-gutters>
+        <b-col md="6">
+          <b-card-img
+            src="https://picsum.photos/400/400/?image=20"
+            alt="Image"
+            class="rounded-0"
+          ></b-card-img>
+        </b-col>
+        <b-col md="6">
+          <b-card-body title="Your logistics definitely Smarter">
+            <p>
+              Powered by artficial intelligence and our mesh of internet of
+              things devices, our software will simplify your scheduling,
+              logistics plannig and reduce drastically your costs, thus using
+              our sophisticated intelligent nework, easily plan your course of
+              action.
+            </p>
+          </b-card-body>
+        </b-col>
+      </b-row>
+    </b-card>
     <h2>Logistics case addressed</h2>
     <p>
       With the continuing growth of our population and the increasing
@@ -31,3 +46,8 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+h1 {
+  text-align: center;
+}
+</style>
