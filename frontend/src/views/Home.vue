@@ -15,9 +15,9 @@
             <p>
               Powered by artficial intelligence and our mesh of internet of
               things devices, our software will simplify your scheduling,
-              logistics plannig and reduce drastically your costs, thus using
-              our sophisticated intelligent nework, easily plan your course of
-              action.
+              logistics planning and reduce drastically your costs, thus using
+              our sophisticated intelligent nework, you can easily plan your
+              course of action ahead.
             </p>
           </b-card-body>
         </b-col>
