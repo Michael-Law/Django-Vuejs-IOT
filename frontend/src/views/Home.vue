@@ -5,8 +5,8 @@
       <b-row no-gutters>
         <b-col md="6">
           <b-card-img
-            src="https://picsum.photos/400/400/?image=20"
-            alt="Image"
+            src="../assets/chuttersnap-fN603qcEA7g-unsplash.jpg"
+            alt="Logistics"
             class="rounded-0"
           ></b-card-img>
         </b-col>
@@ -23,12 +23,13 @@
         </b-col>
       </b-row>
     </b-card>
-    <h2>Logistics case addressed</h2>
+    <h2>Logistics cases addressed</h2>
     <p>
       With the continuing growth of our population and the increasing
       consumption of single items articles. Garbage retrieval is becoming a
       bigger task. More and more garbage is being produced per capita. So we, at
-      Hygeia Technologies are embracing Internet of things to optimise your work
+      Hygeia Technologies, are embracing Internet of things to optimise your
+      work flow, delivering the best data analystics.
     </p>
     <li>Artificial intelligence rerouting</li>
     <li>Advance data processing through the web</li>
