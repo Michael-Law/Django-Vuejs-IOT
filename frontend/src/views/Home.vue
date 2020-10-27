@@ -5,8 +5,8 @@
       <b-row no-gutters>
         <b-col md="6">
           <b-card-img
-            src="../assets/chuttersnap-fN603qcEA7g-unsplash.jpg"
-            alt="Logistics"
+            src="https://i.postimg.cc/jSpb4VjZ/chuttersnap-f-N603qc-EA7g-unsplash.jpg"
+            alt="Blabla"
             class="rounded-0"
           ></b-card-img>
         </b-col>
@@ -28,8 +28,8 @@
       With the continuing growth of our population and the increasing
       consumption of single items articles. Garbage retrieval is becoming a
       bigger task. More and more garbage is being produced per capita. So we, at
-      Hygeia Technologies, are embracing Internet of things to optimise your
-      work flow, delivering the best data analystics.
+      Hygeia Technologies are embracing Internet of things to optimise your work
+      flow, delivering the best data analystics.
     </p>
     <li>Artificial intelligence rerouting</li>
     <li>Advance data processing through the web</li>
