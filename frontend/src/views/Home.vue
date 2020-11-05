@@ -28,8 +28,12 @@
               course of action ahead.</b-card-text
             >
 
-            <b-button class="mt-auto" href="#" variant="outline-primary"
-              >Register</b-button
+            <b-button
+              class="mt-auto"
+              href=""
+              variant="outline-primary"
+              to="/register"
+              >Let's Start</b-button
             >
           </b-card-body>
         </b-col>
@@ -41,21 +45,21 @@
       img-right
     >
       <b-card-text>
-        Some quick example text to build on the card and make up the bulk of the
-        card's content.
+        <h2>Logistics cases addressed; Garbage trucks retrieval and routing</h2>
+        <p>
+          With the continuing growth of our population and the increasing
+          consumption of single items articles. Garbage retrieval is becoming a
+          bigger task. More and more garbage is being produced per capita. So
+          we, at Hygeia Technologies are embracing Internet of things to
+          optimise your work flow, delivering the best data analystics.
+        </p>
+        <li>Artificial intelligence rerouting</li>
+        <li>Advance data processing through the web</li>
+        <li>
+          Immediate update and self-actualisation of different data points
+        </li>
       </b-card-text>
     </b-card>
-    <h2>Logistics cases addressed; Garbage trucks retrieval and routing</h2>
-    <p>
-      With the continuing growth of our population and the increasing
-      consumption of single items articles. Garbage retrieval is becoming a
-      bigger task. More and more garbage is being produced per capita. So we, at
-      Hygeia Technologies are embracing Internet of things to optimise your work
-      flow, delivering the best data analystics.
-    </p>
-    <li>Artificial intelligence rerouting</li>
-    <li>Advance data processing through the web</li>
-    <li>Immediate update and self-actualisation of different data points</li>
   </div>
 </template>
 
