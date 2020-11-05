@@ -33,7 +33,7 @@
               href=""
               variant="outline-primary"
               to="/register"
-              >Let's Start</b-button
+              >Let's Get Started</b-button
             >
           </b-card-body>
         </b-col>

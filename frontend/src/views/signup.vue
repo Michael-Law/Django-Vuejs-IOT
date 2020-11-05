@@ -1,7 +1,12 @@
 <template>
   <div class="signup">
     <navbar />
-    <register />
+    <v-card>
+      <v-card-title>Offers for enterprise</v-card-title>
+      <v-slide-group v-model="model" class="pa-4" center-active show-arrows>
+        <register />
+      </v-slide-group>
+    </v-card>
   </div>
 </template>
 <script>
