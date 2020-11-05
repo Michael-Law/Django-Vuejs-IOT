@@ -3,43 +3,47 @@
     <navbar />
 
     <b-card
-      overlay
-      img-src="https://i.postimg.cc/jSpb4VjZ/chuttersnap-f-N603qc-EA7g-unsplash.jpg"
-      img-alt="Card Image"
-      text-variant="white"
-      img-height="600"
-      img-width="150"
+      no-body
+      class="overflow-hidden"
+      style="max-width: 100% max-height: 100%"
     >
-      <b-card-text>
-        Powered by artificial intelligence and our mesh of internet of things
-        devices, our software will simplify your scheduling, logistics planning
-        and reduce drastically your costs, thus using our sophisticated
-        intelligent nework, you can easily plan your course of action ahead.
-      </b-card-text>
-    </b-card>
-    <b-card no-body class="overflow-hidden" style="max-width: 100%">
       <b-row no-gutters>
         <b-col md="6">
           <b-card-img
             src="https://i.postimg.cc/jSpb4VjZ/chuttersnap-f-N603qc-EA7g-unsplash.jpg"
-            alt="Blabla"
+            alt="Logistics"
             class="rounded-0"
             img-height="600"
             img-width="150"
           ></b-card-img>
         </b-col>
-        <b-col md="6">
-          <b-card-body title="Your logistics definitely Smarter">
-            <p>
+        <b-col class="row" md="6">
+          <b-card-body class="d-flex flex-column">
+            <h2 class="mystyle">Your logistics optimised</h2>
+            <b-card-text>
               Powered by artificial intelligence and our mesh of internet of
               things devices, our software will simplify your scheduling,
               logistics planning and reduce drastically your costs, thus using
               our sophisticated intelligent nework, you can easily plan your
-              course of action ahead.
-            </p>
+              course of action ahead.</b-card-text
+            >
+
+            <b-button class="mt-auto" href="#" variant="outline-primary"
+              >Register</b-button
+            >
           </b-card-body>
         </b-col>
       </b-row>
+    </b-card>
+    <b-card
+      img-src="https://i.postimg.cc/pXdZ7JGb/map.jpg"
+      img-alt="Card image"
+      img-right
+    >
+      <b-card-text>
+        Some quick example text to build on the card and make up the bulk of the
+        card's content.
+      </b-card-text>
     </b-card>
     <h2>Logistics cases addressed; Garbage trucks retrieval and routing</h2>
     <p>
@@ -66,6 +70,11 @@ export default {
 };
 </script>
 <style lang="scss">
+.mystyle {
+  font-family: "Pathway Gothic One", sans-serif;
+  color: black;
+}
+
 h1 {
   text-align: center;
 }
