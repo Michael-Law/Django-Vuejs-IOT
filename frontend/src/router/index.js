@@ -2,6 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Register from '../views/signup.vue'
+import tierI from '../views/tierI.vue'
+import tierII from '../views/tierII.vue'
+import tierIII from '../views/tierIII.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -14,6 +17,21 @@ const routes = [
     path: '/register',
     name: 'register',
     component: Register
+  },
+  {
+    path: '/tierI',
+    name: 'tierI',
+    component: tierI
+  },
+  {
+    path: '/tierII',
+    name: 'tierII',
+    component: tierII
+  },
+  {
+    path: '/tierIII',
+    name: 'tierIII',
+    component: tierIII
   },
   {
     path: '/about',

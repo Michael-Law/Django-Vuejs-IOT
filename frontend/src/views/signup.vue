@@ -10,7 +10,9 @@
             vehicles based on public data.
           </b-card-text>
           <template #footer>
-            <b-button variant="primary">Contact Sales</b-button>
+            <b-button variant="outline-primary" to="/tierI"
+              >Contact Sales</b-button
+            >
           </template>
         </b-card>
 
@@ -21,7 +23,9 @@
             specific needs. Then doing an non-generic optimisation.
           </b-card-text>
           <template #footer>
-            <b-button variant="primary">Contact Sales</b-button>
+            <b-button variant="outline-primary" to="/tierII"
+              >Contact Sales</b-button
+            >
           </template>
         </b-card>
 
@@ -33,7 +37,9 @@
             automatic transactions with your stakeholders
           </b-card-text>
           <template #footer>
-            <b-button variant="primary">Contact Sales</b-button>
+            <b-button variant="outline-primary" to="/tierIII"
+              >Contact Sales</b-button
+            >
           </template>
         </b-card>
       </b-card-group>
