@@ -1,8 +1,12 @@
 <template>
   <div class="signup">
     <navbar />
+    <b-jumbotron
+      header="Logistics Solutions for entreprise"
+      lead="Choose the appropriate solution for your company or use the tierI option for a demo"
+    >
+    </b-jumbotron>
     <v-card style="max-width: 100rem" class="mb-2">
-      <v-card-title>Logistics Solutions for entreprise</v-card-title>
       <b-card-group deck>
         <b-card title="Tier I">
           <b-card-text>

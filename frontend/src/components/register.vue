@@ -1,6 +1,7 @@
 <template>
   <div class="register">
-    <b-card tag="article" style="max-width: 30rem" class="mb-2">
+    <b-card tag="article" style="max-width: 22.5rem" class="mb-2">
+      <h1>{{ Tier }}</h1>
       <b-form @submit="onSubmit" @reset="onReset" v-if="show">
         <b-form-group
           id="input-group-1"
@@ -17,13 +18,56 @@
           ></b-form-input>
         </b-form-group>
 
-        <b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
+        <b-form-group
+          id="input-group-2"
+          label="Your first Name:"
+          label-for="input-2"
+        >
           <b-form-input
             id="input-2"
-            v-model="form.name"
+            v-model="form.firstname"
             required
-            placeholder="Enter name"
+            placeholder="Enter first name"
           ></b-form-input>
+        </b-form-group>
+
+        <b-form-group
+          id="input-group-3"
+          label="Your last Name:"
+          label-for="input-3"
+        >
+          <b-form-input
+            id="input-3"
+            v-model="form.lastname"
+            required
+            placeholder="Enter last name"
+          ></b-form-input>
+        </b-form-group>
+
+        <b-form-group
+          id="input-group-4"
+          label="Your Company's Name:"
+          label-for="input-4"
+        >
+          <b-form-input
+            id="input-4"
+            v-model="form.company"
+            required
+            placeholder="Enter Company name"
+          ></b-form-input>
+        </b-form-group>
+
+        <b-form-group
+          id="input-group-5"
+          label="Your company's size"
+          label-for="input-5"
+        >
+          <b-form-select
+            id="input-5"
+            v-model="form.size"
+            :options="size"
+            required
+          ></b-form-select>
         </b-form-group>
 
         <b-button type="submit" variant="primary">Submit</b-button>
@@ -35,15 +79,23 @@
 
 <script>
 export default {
+  props: ["Tier"],
   data() {
     return {
       form: {
         email: "",
         name: "",
-        password: "",
         company: "",
+        size: "",
       },
-
+      size: [
+        { text: "Select One", value: null },
+        "1-5",
+        "5-20",
+        "20-50",
+        "50-100",
+        "100-200",
+      ],
       show: true,
     };
   },
