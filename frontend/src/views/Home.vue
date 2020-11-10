@@ -17,6 +17,7 @@
             img-width="150"
           ></b-card-img>
         </b-col>
+
         <b-col class="row" md="6">
           <b-card-body class="d-flex flex-column">
             <h2 class="mystyle">Your logistics optimised</h2>

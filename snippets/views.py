@@ -18,6 +18,8 @@ from django.contrib.auth.models import User
 
 from rest_framework import renderers
 
+# from djangorestframework_jwt import JSONWebTokenAuthentication
+
 
 class SnippetHighlight(generics.GenericAPIView):
     queryset = Snippet.objects.all()
@@ -41,11 +43,15 @@ def api_root(request, format=None):
 class UserList(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    authentication_class = (JSONWebTokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
 
 
 class UserDetail(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    authentication_class = (JSONWebTokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
 
 
 class SnippetList(APIView):

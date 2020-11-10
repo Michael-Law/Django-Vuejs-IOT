@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import datetime
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
-    'snippets.apps.SnippetsConfig',
+    "snippets.apps.SnippetsConfig",
 ]
 
 MIDDLEWARE = [
@@ -124,4 +124,10 @@ STATIC_URL = "/static/"
 REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 10,
+}
+
+JWT_AUTH = {
+    "JWT_ALLOW_REFRESH": True,
+    "JWT_EXPIRATION_DELTA": datetime.timedelta(hours=1),
+    "JWT_REFRESH_EXPIRATION_DELTA": datetime.timedelta(days=7),
 }
