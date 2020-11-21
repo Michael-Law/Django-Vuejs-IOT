@@ -2,8 +2,6 @@
   <div id="app">
     <div id="nav">
       <top-navbar></top-navbar>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
     </div>
     <router-view/>
   </div>
@@ -16,13 +14,17 @@ export default {
   },
 }
 </script>
-<style>
+<style lang='scss'>
+@import './components/forestgrey.css';
+@import url("https://fonts.googleapis.com/css2?family=Arvo&display=swap");
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Avenir, Helvetica, Arvo, serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color:#c1c8c9;
+  background: #feffff;
 }
 
 #nav {
