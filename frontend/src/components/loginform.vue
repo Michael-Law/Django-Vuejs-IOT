@@ -43,13 +43,13 @@ export default {
         email: "",
         password: "",
       },
-      show: false,
+      show: true,
     };
   },
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
-      alert(JSON.stringify(this.form));
+      // alert(JSON.stringify(this.form));
     },
   },
 };

@@ -70,6 +70,16 @@
           ></b-form-select>
         </b-form-group>
 
+        <b-form-group id="input-group-1" label="Password:" label-for="input-6">
+          <b-form-input
+            id="input-6"
+            v-model="form.password"
+            type="password"
+            required
+            placeholder="Enter password"
+          ></b-form-input>
+        </b-form-group>
+
         <b-button type="submit" variant="primary">Submit</b-button>
         <b-button type="reset" variant="danger">Reset</b-button>
       </b-form>
@@ -78,6 +88,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   props: ["Tier"],
   data() {
@@ -87,6 +99,8 @@ export default {
         name: "",
         company: "",
         size: "",
+        password: "",
+        tier: this.Tier,
       },
       size: [
         { text: "Select One", value: null },
@@ -101,8 +115,25 @@ export default {
   },
   methods: {
     onSubmit(evt) {
-      evt.preventDefault();
-      alert(JSON.stringify(this.form));
+      axios
+        .post("/contact", this.form)
+        .then((res) => {
+          //Perform Success Action
+        })
+        .catch((error) => {
+          // error.response.status Check status code
+        })
+        .finally(() => {
+          //Perform action in always
+        });
+
+      // axios({
+      //   method: "post",
+      //   url: "http://127.0.0.1:8000/api/users/",
+      //   data: this.form,
+      // }).then((response) => (this.form = response.data));
+
+      // alert(JSON.stringify(this.form));
     },
     onReset(evt) {
       evt.preventDefault();
