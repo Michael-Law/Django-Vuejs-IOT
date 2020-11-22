@@ -10,7 +10,7 @@
       <v-row dense align="end" align-content="end">
         <v-spacer />
         <v-btn text to="/"> Home </v-btn>
-        <v-btn text> Sign in </v-btn>
+        <v-btn text to="/login"> Sign in </v-btn>
         <v-btn text> About </v-btn>
         <v-btn text> Solutions </v-btn>
       </v-row>
