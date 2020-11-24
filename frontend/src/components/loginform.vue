@@ -35,6 +35,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     type: "password";
@@ -49,7 +51,18 @@ export default {
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
-      // alert(JSON.stringify(this.form));
+      alert(JSON.stringify(this.form));
+      axios
+        .post("http://127.0.0.1:8000/api/token/", this.form)
+        .then((res) => {
+          //Perform Success Action
+        })
+        .catch((error) => {
+          // error.response.status Check status code
+        })
+        .finally(() => {
+          //Perform action in always
+        });
     },
   },
 };

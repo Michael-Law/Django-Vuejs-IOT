@@ -23,7 +23,7 @@ new Vue({
   render: h => h(App)
 }).$mount('#app')
 
-store = new Vuex.Store({
+store = new vuex.Store({
   state: {
     jwt: localStorage.getItem('t'),
     endpoints: {
