@@ -126,14 +126,6 @@ export default {
         .finally(() => {
           //Perform action in always
         });
-
-      // axios({
-      //   method: "post",
-      //   url: "http://127.0.0.1:8000/api/users/",
-      //   data: this.form,
-      // }).then((response) => (this.form = response.data));
-
-      // alert(JSON.stringify(this.form));
     },
     onReset(evt) {
       evt.preventDefault();
