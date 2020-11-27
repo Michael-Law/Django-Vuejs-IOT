@@ -1,12 +1,13 @@
 from rest_framework import serializers
 from rest_framework.permissions import IsAuthenticated
 from django.db import models
-from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import make_password  # Register serializer
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import get_user_model
+from .models import StaffProfile
 
-User = get_user_model()
+User = StaffProfile
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
@@ -21,8 +22,8 @@ class UserCreateSerializer(serializers.ModelSerializer):
         model = User
         fields = [
             "username",
-            "company",
             "email",
+            "company",
             "password",
             "password2",
         ]
@@ -51,5 +52,5 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
+        model = StaffProfile
         fields = "__all__"

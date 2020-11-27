@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from snippets.models import Snippet, LANGUAGE_CHOICES, STYLE_CHOICES
-
-from django.contrib.auth.models import User
+from django.conf import settings
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -10,7 +9,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     )
 
     class Meta:
-        model = User
+        model = settings.AUTH_USER_MODEL
         fields = ["url", "id", "username", "snippets"]
 
 

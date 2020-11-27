@@ -81,10 +81,10 @@ WSGI_APPLICATION = "backend.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "d9n9bspdl2qfbn",
-        "USER": "tkjkewxsegsimr",
-        "PASSWORD": "237b2ad3e8532b31bd6fa2e0e827bbd1299f8ef1fe0b95eab3eef71e30efd119",
-        "HOST": "ec2-3-248-4-172.eu-west-1.compute.amazonaws.com",
+        "NAME": "d8erssmedsp72s",
+        "USER": "agpqretanfkyyt",
+        "PASSWORD": "a652d500cfbf7a96631d5fd09a6a477ef874f039c5a9c96096f717bd0c18a1a3",
+        "HOST": "ec2-52-30-161-203.eu-west-1.compute.amazonaws.com",
         "PORT": "5432",
     }
 }
@@ -147,3 +147,5 @@ OAUTH2_PROVIDER = {
     "OAUTH_SINGLE_ACCESS_TOKEN": True,
     "OAUTH_DELETE_EXPIRED": True,
 }
+
+AUTH_USER_MODEL = "accounts.StaffProfile"
