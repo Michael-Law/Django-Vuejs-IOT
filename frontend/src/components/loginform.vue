@@ -51,19 +51,13 @@ export default {
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
-      alert(JSON.stringify(this.form));
-      this.form = {
-        email: this.email,
-        password: this.password,
-      };
+      // alert(JSON.stringify(this.form));
       var form_data = new FormData();
-
       for (var key in this.form) {
         form_data.append(key, this.form[key]);
       }
-      console.log(form_data);
       axios
-        .post("http://127.0.0.1:8000/api/token/", JSON.stringify(form_data))
+        .post("http://127.0.0.1:8000/api/token/", form_data, {})
         .then((response) => (this.info = response.data));
     },
   },

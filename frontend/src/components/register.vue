@@ -117,23 +117,13 @@ export default {
   },
   methods: {
     onSubmit(evt) {
-      alert(JSON.stringify(this.form));
-      this.form = {
-        username: this.firstname,
-        email: this.email,
-        company: this.company,
-        password: this.password,
-        password2: this.password,
-      };
       var form_data = new FormData();
       for (var key in this.form) {
         form_data.append(key, this.form[key]);
       }
+
       axios
-        .post(
-          "http://127.0.0.1:8000/account/api/register",
-          JSON.stringify(form_data)
-        )
+        .post("http://127.0.0.1:8000/account/api/register", form_data)
         .then((response) => (this.info = response.data));
     },
 
