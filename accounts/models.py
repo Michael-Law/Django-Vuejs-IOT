@@ -42,4 +42,4 @@ class StaffProfile(AbstractUser):
     objects = CustomUserManager()
 
     def __str__(self):
-        return self.user.email
+        return self.email

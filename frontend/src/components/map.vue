@@ -4,6 +4,7 @@
 
 <script>
 import mapboxgl from "mapbox-gl";
+import { MglMap, MglGeojsonLayer } from "vue-mapbox";
 import navbar from "@/components/navbar.vue";
 
 export default {
@@ -14,7 +15,13 @@ export default {
         "pk.eyJ1IjoiaW52aWN0YTExMSIsImEiOiJja2hyMjM0cXAwcWJ1MnNyc2tzbGlneWw2In0.GDyvy8Yi8WBasxZKfH_0bA",
     };
   },
+
   mounted() {
+    // axios
+    //     .get("http://172.16.158.116:5001//ping")
+    //     .then((response) => (this.test = response.data))
+    //     .catch((error) => console.log(error));
+
     mapboxgl.accessToken = this.accessToken;
 
     new mapboxgl.Map({
@@ -29,11 +36,20 @@ export default {
       ],
     });
   },
+  computed: {},
 };
 </script>
 <style lang="scss" scoped>
+.sidebar {
+  width: 33.3333%;
+}
+
 .basemap {
-  width: 100%;
-  height: 100%;
+  border-left: 1px solid #fff;
+  position: absolute;
+  left: 33.3333%;
+  width: 75%;
+  top: 64px;
+  bottom: 0;
 }
 </style>

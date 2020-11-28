@@ -6,6 +6,7 @@ from django.contrib.auth.hashers import make_password  # Register serializer
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import get_user_model
 from .models import StaffProfile
+import json
 
 User = StaffProfile
 
@@ -44,7 +45,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
             )
         if password != password2:
             raise serializers.ValidationError({"password": "The two passwords differ."})
-        user = User(username=username, email=email)
+        user = User(username=username, company=company, email=email)
         user.set_password(password)
         user.save()
         return user
@@ -52,5 +53,5 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = StaffProfile
+        model = User
         fields = "__all__"
