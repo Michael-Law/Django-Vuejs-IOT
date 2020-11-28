@@ -36,6 +36,7 @@
 
 <script>
 import axios from "axios";
+import router from "../router";
 
 export default {
   data() {
@@ -58,7 +59,14 @@ export default {
       }
       axios
         .post("http://127.0.0.1:8000/api/token/", form_data, {})
-        .then((response) => (this.info = response.data));
+        .then(function (response) {
+          const status = response.status;
+          //redirect logic
+          // var navigate = self.$router;
+          if (status == "200") {
+            router.push({ name: "dashboard" });
+          }
+        });
     },
   },
 };

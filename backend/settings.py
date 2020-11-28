@@ -150,3 +150,4 @@ OAUTH2_PROVIDER = {
 }
 
 AUTH_USER_MODEL = "accounts.StaffProfile"
+CORS_ORIGIN_ALLOW_ALL = True

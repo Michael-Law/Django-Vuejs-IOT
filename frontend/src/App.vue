@@ -6,7 +6,7 @@
 
 <script>
 import HelloWorld from "./components/HelloWorld";
-
+import router from "./router/index";
 export default {
   name: "App",
 

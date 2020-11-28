@@ -12,6 +12,9 @@ import jwt from 'jwt-decode'
 import vuex from 'vuex'
 Vue.config.productionTip = false
 
+
+Vue.use(router);
+
 new Vue({
   router,
   store,
