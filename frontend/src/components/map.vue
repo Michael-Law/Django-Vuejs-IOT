@@ -1,42 +1,51 @@
 <template>
-  <div id="mapContainer" class="basemap"></div>
+  <MglMap
+    :accessToken="mapboxAccessToken"
+    :mapStyle.sync="mapStyle"
+    :center="coordinates"
+    :maxBounds="maxBounds"
+  >
+    <MglNavigationControl position="top-right" />
+    <MglMarker :coordinates="coordinates">
+      <MglPopup>
+        <VCard>
+          <div>Amount : 100</div>
+        </VCard>
+      </MglPopup>
+    </MglMarker>
+  </MglMap>
 </template>
 
 <script>
-import mapboxgl from "mapbox-gl";
-import { MglMap, MglGeojsonLayer } from "vue-mapbox";
-import navbar from "@/components/navbar.vue";
+name: "BaseMap";
+import { MglMap, MglPopup, MglMarker } from "vue-mapbox";
 
 export default {
-  name: "BaseMap",
-  data() {
-    return {
-      accessToken:
-        "pk.eyJ1IjoiaW52aWN0YTExMSIsImEiOiJja2hyMjM0cXAwcWJ1MnNyc2tzbGlneWw2In0.GDyvy8Yi8WBasxZKfH_0bA",
-    };
+  components: {
+    MglMap,
+    MglMarker,
+    MglPopup,
   },
 
-  mounted() {
-    mapboxgl.accessToken = this.accessToken;
-    new mapboxgl.Map({
-      container: "mapContainer",
-      style: "mapbox://styles/invicta111/ckhr495nz00ay1amkd1bjstli",
-      center: [57.59257009517367, -20.289607639709068],
-      zoom: 12,
+  data() {
+    return {
+      mapboxAccessToken:
+        "pk.eyJ1IjoiaW52aWN0YTExMSIsImEiOiJja2hyMjM0cXAwcWJ1MnNyc2tzbGlneWw2In0.GDyvy8Yi8WBasxZKfH_0bA", // your access token. Needed if you using Mapbox maps
+      mapStyle: "mapbox://styles/invicta111/ckhr495nz00ay1amkd1bjstli",
+      coordinates: [57.59257009517367, -20.289607639709068],
       maxBounds: [
         [57.270295862485135, -20.531959293688164],
         [57.88271863500014, -19.974641272520877],
       ],
-    });
+    };
   },
-  computed: {},
 };
 </script>
+
 <style lang="scss" scoped>
 .sidebar {
   width: 33.3333%;
 }
-
 .basemap {
   border-left: 1px solid #fff;
   position: absolute;
