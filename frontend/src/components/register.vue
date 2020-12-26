@@ -139,7 +139,14 @@ export default {
 
       axios
         .post("http://127.0.0.1:8000/account/api/register", form_data)
-        .then((response) => (this.info = response.data));
+        .then((response) => {
+          const status = response.status;
+          //redirect logic
+          // var navigate = self.$router;
+          if (status == "200") {
+            router.push({ name: "dashboard" });
+          }
+        });
     },
 
     onReset(evt) {
