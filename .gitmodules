@@ -1,0 +1,3 @@
+[submodule "utxo-workshop"]
+	path = utxo-workshop
+	url = https://github.com/substrate-developer-hub/utxo-workshop.git
