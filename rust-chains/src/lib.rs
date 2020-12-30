@@ -1,4 +1,7 @@
-#[derive(Debug)]
+use serde::{Deserialize, Serialize};
+
+
+#[derive(Debug,Serialize, Deserialize)]
 pub struct Transaction {
     pub sender: String,
     pub receiver: String,
@@ -16,16 +19,11 @@ pub fn hash_suffix(
     pre_hash: &str,
     transactions: &Vec<Transaction>,
     timestamp: &u64,
-    nonce: &u64,
             ) ->String {
                 let mut bytes = vec![];
-                use std::io::Read
                 bytes.extend(&timestamp.to_ne_bytes());
                 bytes.extend(
-                    transactions
-                        .iter()
-                        .flat_map(|transaction| transaction.bytes())
-                        .collect::<Vec<u8>>(),
+                    bincode::serialize(&transactions).unwrap()
                 );
                 bytes.extend(pre_hash.as_bytes());
         
