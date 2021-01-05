@@ -736,6 +736,7 @@ dependencies = [
  "crypto-hash",
  "diesel",
  "dotenv",
+ "hex",
  "rocket",
  "serde",
 ]
