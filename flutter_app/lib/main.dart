@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
-import 'home_wid.dart';
+import 'package:flutter_app/branch/tabs/tabs_pages.dart';
 
-void main() => runApp(App());
+void main() {
+  runApp(MyApp());
+}
 
-class App extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'My Flutter App',
-      home: Home(),
+      title: 'App',
+      theme: ThemeData(
+        primarySwatch: Colors.green,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: TabsPage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
