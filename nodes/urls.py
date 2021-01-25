@@ -5,4 +5,5 @@ from .views import NodeViewset
 router = routers.DefaultRouter()
 router.register("garbagenode", NodeViewset)
 
+
 urlpatterns = router.urls
