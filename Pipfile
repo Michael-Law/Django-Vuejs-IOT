@@ -11,9 +11,11 @@ djangorestframework-gis = "*"
 psycopg2-binary = "*"
 julia = "*"
 djangorestframework-simplejwt = "*"
-black = "*"
+pandas = "*"
+geopandas = "*"
 
 [dev-packages]
+autopep8 = "*"
 
 [requires]
 python_version = "3.8"
