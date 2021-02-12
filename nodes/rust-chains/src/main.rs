@@ -1,18 +1,3 @@
-// #![feature(proc_macro_hygiene, decl_macro)]
-
-// #[macro_use] extern crate rocket;
-
-// mod lib;
-
-// #[get("/")]
-// fn external() -> &'static str {
-//     "Hello, world!"
-// }
-
-// fn main() {
-
-//     rocket::ignite().mount("/", routes![external]).launch();
-// }
 use blockchainlib::*;
 
 fn main(){
@@ -22,15 +7,15 @@ fn main(){
         Transaction{
             inputs:vec![],
             outputs:vec![
-                transaction::Output{
-                    to_addr:"Alice".to_owned(),
-                    value:50,
-                },
+                // transaction::Output{
+                //     to_addr:"Alice".to_owned(),
+                //     value:50,
+                // },
 
-                transaction::Output{
-                    to_addr:"Merle".to_owned(),
-                    value:7,
-                },
+                // transaction::Output{
+                //     to_addr:"Merle".to_owned(),
+                //     value:7,
+                // },
             ]
         }
     ], difficulty);
