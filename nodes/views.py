@@ -36,8 +36,7 @@ def OptimalRoute(request):
 
     from julia import Main
     Main.include('./nodes/genetic.jl')
-    length = Main.eval('haversine(-0.116773, 51.510357, -77.009003, 38.889931)')
-    
+    res = Main.initialMatrix(NonOptDict)
 
-    return Response(length)
+    return Response(res)
 
