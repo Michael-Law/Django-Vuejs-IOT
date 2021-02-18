@@ -27,7 +27,7 @@ function parsedata(pointing, position)
     a = pointing[position]["Geolocation"]
     m = chop(match(r"\(([^)]*)\)", a).match, head=1, tail=1)
     array = split(m, " ", limit=2)
-    return parse(Float64, array[1]), parse(Float64, array[2])
+    return parse(Float64, array[2]), parse(Float64, array[1])
 end
 
 function Normalize(array1)
@@ -84,20 +84,19 @@ function AntColonyOptimisation(HeuristicsArray, AntsPopulation)
 
             end
             PheromoneMatrix = PheromoneMatrix .+ (ant * cost)
-           
         end
     end
     return OptPath
 end
 
 function LocalisePlaces(array1, array2)
-    Nodes = Vector{String}()
+    Nodes = Vector{Tuple{Float64,Float64}}()
     for i in array1
-        push!(Nodes, array2[i]["Location"])
+        push!(Nodes, parsedata(array2, i))
     end
     return Nodes
-
 end
+
 function initialMatrix(dict)
     HeuristicMatrix = Array{Float64}(undef, size(dict)[1], size(dict)[1])
     for (index, element) in enumerate(dict)

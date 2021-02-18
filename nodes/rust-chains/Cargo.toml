@@ -15,10 +15,12 @@ name = "blockchain"
 path = "src/main.rs"
 
 [dependencies]
+rocket = "0.4.7"
 crypto-hash = "*"
 hex = "0.3.2"
-rocket = "0.4.6"
-diesel = { version = "1.4.4", features = ["postgres"] }
 dotenv = "0.15.0"
 bincode = "1.0"
 serde = { version = "1.0", features = ["derive"] }
+cpython = "0.5"
+
+

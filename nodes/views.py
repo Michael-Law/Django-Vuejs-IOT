@@ -20,23 +20,26 @@ def OptimalRoute(request):
     with connection.cursor() as cursor:
         cursor.execute("SELECT id, location, amount, instance, ST_AsText(geolocation) FROM nodes_garbagenodes;")
         row = cursor.fetchall()
-        
-
     columns=["id", "Location", "amount", "instance","Geolocation"]
     df = pd.DataFrame(row,columns=columns)
-
     NonOptDict = df.to_dict('records')
+
     """
     Julia Api backend for genetic algorithm, which will input the 
     dictionnary to be optimised.
     """
-
     from julia.api import Julia
     jl = Julia(compiled_modules=False)
-
     from julia import Main
     Main.include('./nodes/genetic.jl')
     res = Main.initialMatrix(NonOptDict)
 
     return Response(res)
 
+# @api_view()
+# def Transactions(request):
+#     with connection.cursor() as cursor:
+#         cursor.execute("SEL")
+#         row = cursor.fetchall()
+#     columns = []
+#     return 
