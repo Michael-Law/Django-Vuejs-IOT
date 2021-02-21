@@ -1,18 +1,37 @@
 <template>
-  <MglMap
-    :accessToken="mapboxAccessToken"
-    :mapStyle.sync="mapStyle"
-    :center="coordinates"
-    :maxBounds="maxBounds"
-  >
-    <MglNavigationControl position="top-right" />
-    <MglGeojsonLayer
-      :sourceId="this.geoJsonSource.data.id"
-      :source="this.geoJsonSource"
-      layerId="somethingSomething"
-      :layer="geoJsonLayer"
-    />
-  </MglMap>
+  <b-container fluid>
+    <b-row class="vh-100">
+      <b-col lg="2"
+        ><b-card
+          title="Optimal Route"
+          tag="article"
+          style="max-width: 20rem"
+          class="mb-2"
+        >
+          <b-card-text>
+            <li v-for="item in optimalPlaces" :key="item">
+              {{ item }}
+            </li>
+          </b-card-text>
+        </b-card></b-col
+      >
+      <b-col cols="10">
+        <MglMap
+          :accessToken="mapboxAccessToken"
+          :mapStyle.sync="mapStyle"
+          :center="coordinates"
+          :maxBounds="maxBounds"
+        >
+          <MglNavigationControl position="top-right" />
+          <MglGeojsonLayer
+            :sourceId="this.geoJsonSource.data.id"
+            :source="this.geoJsonSource"
+            layerId="somethingSomething"
+            :layer="geoJsonLayer"
+          /> </MglMap
+      ></b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
@@ -42,7 +61,7 @@ export default {
       [57.270295862485135, -20.531959293688164],
       [57.88271863500014, -19.974641272520877],
     ],
-
+    optimalPlaces: [],
     geoJsonLayer: {
       id: "route",
       type: "line",
@@ -77,10 +96,9 @@ export default {
       .then((response) => (this.IncrementalPath = response.data));
   },
   methods: {
-    generateRoute() {
-      const myArray = [];
-      var api_array = this.IncrementalPath;
-      console.log("Hello");
+    generateRoute(primeArray) {
+      let myArray = [];
+      var api_array = primeArray;
       var start, end, url;
       for (let step = 0; step < api_array.length - 1; step++) {
         start = api_array[step];
@@ -100,7 +118,7 @@ export default {
         axios
           .get(url)
           .then((response) =>
-            myArray.push(response.data.routes[0].geometry.coordinates)
+            myArray.push(...response.data.routes[0].geometry.coordinates)
           );
       }
       return myArray;
@@ -108,8 +126,16 @@ export default {
   },
 
   watch: {
-    IncrementalPath: function () {
-      this.generateRoute;
+    IncrementalPath: {
+      deep: true,
+      handler(val, oldVal) {
+        let me = this;
+        console.log(oldVal);
+        me.geoJsonSource.data.geometry.coordinates = me.generateRoute(val);
+        axios
+          .get("http://127.0.0.1:8000/api/OptimalPlaces/?format=json")
+          .then((response) => (me.optimalPlaces = response.data));
+      },
     },
   },
 };

@@ -1,3 +1,5 @@
+
+
 using PyCall
 using Statistics
 using StatsBase
@@ -114,3 +116,4 @@ function initialMatrix(dict)
     end
     return LocalisePlaces(AntColonyOptimisation(Normalize(HeuristicMatrix), 100), dict)
 end
+
