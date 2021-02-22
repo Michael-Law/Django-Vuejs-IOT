@@ -12,13 +12,29 @@ class AccountPage extends StatelessWidget {
         title: Text("Account"),
       ),
       body: Container(
-        padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-        height: 220,
-        width: double.maxFinite,
-        child: Card(
-          elevation: 5,
-        ),
-      ),
+          child: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+            height: 200,
+            width: double.maxFinite,
+            child: Card(
+              elevation: 2.5,
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+            height: 500,
+            width: double.maxFinite,
+            child: Card(
+              elevation: 2.5,
+              child: Container(
+                child: Text("Hello"),
+              ),
+            ),
+          ),
+        ],
+      )),
     );
   }
 }
