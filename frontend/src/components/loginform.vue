@@ -61,8 +61,6 @@ export default {
         .post("http://127.0.0.1:8000/api/token/", form_data, {})
         .then(function (response) {
           const status = response.status;
-          //redirect logic
-          // var navigate = self.$router;
           if (status == "200") {
             router.push({ name: "dashboard" });
           }

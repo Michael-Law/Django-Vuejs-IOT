@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "nodes.apps.NodesConfig",
     "accounts.apps.AccountsConfig",
+    "rest_framework_gis",
 ]
 
 MIDDLEWARE = [
@@ -81,7 +82,7 @@ WSGI_APPLICATION = "backend.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "ENGINE": "django.contrib.gis.db.backends.postgis",
         "NAME": "d8erssmedsp72s",
         "USER": "agpqretanfkyyt",
         "PASSWORD": "a652d500cfbf7a96631d5fd09a6a477ef874f039c5a9c96096f717bd0c18a1a3",

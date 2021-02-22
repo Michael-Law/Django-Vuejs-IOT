@@ -7,4 +7,4 @@ from django.contrib.auth.models import User
 class NodeSerializer(ModelSerializer):
     class Meta:
         model = GarbageNodes
-        fields = ["created", "placename", "amount", "lat", "lon"]
+        fields = ["location", "amount", "instance", "geolocation"]
