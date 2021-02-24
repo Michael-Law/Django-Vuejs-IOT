@@ -92,7 +92,7 @@ export default {
 
   mounted() {
     axios
-      .get("http://127.0.0.1:8000/api/OptimalRoute/?format=json")
+      .get("http://172.104.166.102:8000/api/OptimalRoute/?format=json")
       .then((response) => (this.IncrementalPath = response.data));
   },
   methods: {
@@ -133,7 +133,7 @@ export default {
         console.log(oldVal);
         me.geoJsonSource.data.geometry.coordinates = me.generateRoute(val);
         axios
-          .get("http://127.0.0.1:8000/api/OptimalPlaces/?format=json")
+          .get("http://172.104.166.102:8000/api/OptimalPlaces/?format=json")
           .then((response) => (me.optimalPlaces = response.data));
       },
     },

@@ -58,7 +58,7 @@ export default {
         form_data.append(key, this.form[key]);
       }
       axios
-        .post("http://127.0.0.1:8000/api/token/", form_data, {})
+        .post("http://172.104.166.102:8000/api/token/", form_data, {})
         .then(function (response) {
           const status = response.status;
           if (status == "200") {
