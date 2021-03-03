@@ -1,40 +1,52 @@
-#![feature(proc_macro_hygiene, decl_macro)]
+use actix_web::{get, post, web, App, HttpResponse, HttpServer, Responder};
+use blockchainlib::*;
+use serde::Deserialize;
+use std::collections::HashMap;
+use std::sync::Mutex;
 
-#[macro_use]
-extern crate rocket;
+static mut DEGREE: u32 = 0;
 
-#[get("/hello/<name>/<age>")]
-fn hello(name: String, age: u8) -> String {
-    format!("Hello, {} year old named {}!", age, name)
+unsafe fn increase_degree() -> u32 {
+    let re = DEGREE;
+    DEGREE += 1;
+    return re;
 }
 
-use blockchainlib::*;
+#[derive(Deserialize, Debug)]
+struct Request {
+    originator: String,
+    destinator: String,
+    value: u64,
+}
 
-fn main() {
-    let difficulty = 0x00ffffffffffffffffffffffffffff;
+#[post("/transaction")]
+async fn peertopeer(req_body: web::Form<Request>) -> impl Responder {
+    let difficulty = 0x000fffffffffffffffffffffffffffff;
 
     let mut genesis_block = Block::new(
         0,
-        0,
+        now(),
         vec![0; 32],
         vec![Transaction {
             inputs: vec![],
             outputs: vec![
                 transaction::Output {
-                    to_addr: "Alice".to_owned(),
-                    value: 500,
+                    to_addr: "Precursor".to_owned(),
+                    value: 100,
                 },
                 transaction::Output {
-                    to_addr: "Merle".to_owned(),
-                    value: 700,
+                    to_addr: "Bob".to_owned(),
+                    value: 7,
                 },
             ],
         }],
         difficulty,
     );
+
     genesis_block.mine();
 
-    println!("{:?}", &genesis_block);
+    println!("Mined genesis block {:?}", &genesis_block);
+
     let mut last_hash = genesis_block.hash.clone();
 
     let mut blockchain = Blockchain::new();
@@ -43,28 +55,34 @@ fn main() {
         .update_with_block(genesis_block)
         .expect("Failed to add genesis block");
 
+    unsafe { increase_degree() };
+    let indexer: u32 = unsafe { DEGREE } - 1;
+
     let mut block = Block::new(
-        1,
+        unsafe { DEGREE },
         now(),
         last_hash,
         vec![
             Transaction {
                 inputs: vec![],
                 outputs: vec![transaction::Output {
-                    to_addr: "Chris".to_owned(),
-                    value: 536,
+                    to_addr: "Miner".to_owned(),
+                    value: 5,
                 }],
             },
             Transaction {
-                inputs: vec![blockchain.blocks[0].transactions[0].outputs[0].clone()],
+                inputs: vec![
+                    blockchain.blocks[indexer as usize].transactions[0].outputs[0].clone(),
+                ],
                 outputs: vec![
                     transaction::Output {
-                        to_addr: "Alice".to_owned(),
-                        value: 36,
+                        to_addr: req_body.originator.to_owned(),
+                        value: blockchain.blocks[0].transactions[0].outputs[0].value
+                            - req_body.value,
                     },
                     transaction::Output {
-                        to_addr: "Bob".to_owned(),
-                        value: 12,
+                        to_addr: req_body.destinator.to_owned(),
+                        value: req_body.value,
                     },
                 ],
             },
@@ -82,5 +100,13 @@ fn main() {
         .update_with_block(block)
         .expect("Failed to add block");
 
-    rocket::ignite().mount("/", routes![hello]).launch();
+    HttpResponse::Ok().body("Transaction Complete")
+}
+
+#[actix_web::main]
+async fn main() -> std::io::Result<()> {
+    HttpServer::new(|| App::new().service(peertopeer))
+        .bind("127.0.0.1:8080")?
+        .run()
+        .await
 }

@@ -8,8 +8,9 @@ from .serializers import NodeSerializer
 from rest_framework.response import Response
 import pandas as pd
 import geopandas as gp
-from ctypes import *
 import pathlib
+import requests
+
 
 class NodeViewset(ModelViewSet):
     queryset = GarbageNodes.objects.all()
@@ -19,10 +20,11 @@ class NodeViewset(ModelViewSet):
 @api_view()
 def OptimalRoute(request):
     with connection.cursor() as cursor:
-        cursor.execute("SELECT id, location, amount, instance, ST_AsText(geolocation) FROM nodes_garbagenodes;")
+        cursor.execute(
+            "SELECT id, location, amount, instance, ST_AsText(geolocation) FROM nodes_garbagenodes;")
         row = cursor.fetchall()
-    columns=["id", "Location", "amount", "instance","Geolocation"]
-    df = pd.DataFrame(row,columns=columns)
+    columns = ["id", "Location", "amount", "instance", "Geolocation"]
+    df = pd.DataFrame(row, columns=columns)
     NonOptDict = df.to_dict('records')
 
     """
@@ -33,8 +35,7 @@ def OptimalRoute(request):
     jl = Julia(compiled_modules=False)
     from julia import Main
     Main.include('./nodes/Genetic.jl')
-    res,des = Main.initialMatrix(NonOptDict)
-    
+    res, des = Main.initialMatrix(NonOptDict)
 
     return Response(res)
 
@@ -42,10 +43,11 @@ def OptimalRoute(request):
 @api_view()
 def OptimalPlaces(request):
     with connection.cursor() as cursor:
-        cursor.execute("SELECT id, location, amount, instance, ST_AsText(geolocation) FROM nodes_garbagenodes;")
+        cursor.execute(
+            "SELECT id, location, amount, instance, ST_AsText(geolocation) FROM nodes_garbagenodes;")
         row = cursor.fetchall()
-    columns=["id", "Location", "amount", "instance","Geolocation"]
-    df = pd.DataFrame(row,columns=columns)
+    columns = ["id", "Location", "amount", "instance", "Geolocation"]
+    df = pd.DataFrame(row, columns=columns)
     NonOptDict = df.to_dict('records')
 
     """
@@ -56,6 +58,15 @@ def OptimalPlaces(request):
     jl = Julia(compiled_modules=False)
     from julia import Main
     Main.include('./nodes/Genetic.jl')
-    res,des = Main.initialMatrix(NonOptDict)
-    
+    res, des = Main.initialMatrix(NonOptDict)
+
     return Response(des)
+
+
+@api_view(['POST'])
+def nearestnode(request):
+    data = request.data
+    url = 'https://www.w3schools.com/python/demopage.php'
+
+    feedback = requests.post(url, data=data)
+    return feedback

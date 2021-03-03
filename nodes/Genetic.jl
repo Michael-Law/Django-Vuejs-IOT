@@ -83,7 +83,6 @@ function AntColonyOptimisation(HeuristicsArray, AntsPopulation)
                         break
                     end
                 end
-
             end
             PheromoneMatrix = PheromoneMatrix .+ (ant * cost)
         end

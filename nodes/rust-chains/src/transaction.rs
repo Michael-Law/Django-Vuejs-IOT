@@ -1,7 +1,8 @@
 use super::*;
 use std::collections::HashSet;
+use std::fmt;
 
-#[derive(Clone)]
+#[derive(Clone, Debug)]
 pub struct Output {
     pub to_addr: Address,
     pub value: u64,
@@ -10,6 +11,12 @@ pub struct Output {
 pub struct Transaction {
     pub inputs: Vec<Output>,
     pub outputs: Vec<Output>,
+}
+
+impl fmt::Debug for Transaction {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "({:?}, {:?})", self.inputs, self.outputs)
+    }
 }
 
 impl Transaction {
