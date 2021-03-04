@@ -1312,6 +1312,7 @@ dependencies = [
  "crypto-hash",
  "dotenv",
  "hex",
+ "lazy_static",
  "serde",
  "serde_json",
 ]

@@ -15,7 +15,7 @@ pub enum BlockValidationErr {
 
 pub struct Blockchain {
     pub blocks: Vec<Block>,
-    unspent_outputs: HashSet<Hash>,
+    pub unspent_outputs: HashSet<Hash>,
 }
 
 impl Blockchain {
