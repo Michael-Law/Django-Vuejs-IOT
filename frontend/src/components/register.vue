@@ -138,7 +138,7 @@ export default {
       }
 
       axios
-        .post("http://172.104.166.102:8000/account/api/register", form_data)
+        .post("http://172.104.166.102:8000/api/account/api/register", form_data)
         .then((response) => {
           const status = response.status;
           //redirect logic

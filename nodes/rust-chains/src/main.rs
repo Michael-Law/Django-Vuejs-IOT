@@ -60,25 +60,20 @@ async fn peertopeer(req_body: web::Form<Request>) -> impl Responder {
 
         block.mine();
 
-        // println!("Mined block {:?}", &block);
-
-        let mut prev_hash = block.hash.clone();
+        let prev_hash = block.hash.clone();
 
         TRUNCKHASH.lock().unwrap().push(prev_hash);
-        
         CHAIN
             .lock()
             .unwrap()
             .update_with_block(block)
             .expect("Failed to add block");
 
-        
         unsafe { increase_degree() };
     } else {
-
-        println!("Index is {:?}",unsafe{DEGREE});
+        println!("Index is {:?}", unsafe { DEGREE });
         let indexer: u32 = unsafe { DEGREE } - 1;
-        let mut last_hash = TRUNCKHASH.lock().unwrap()[indexer as usize].clone();
+        let last_hash = TRUNCKHASH.lock().unwrap()[indexer as usize].clone();
         let mut chains = CHAIN.lock().unwrap();
         let mut block = Block::new(
             unsafe { DEGREE },
@@ -93,10 +88,7 @@ async fn peertopeer(req_body: web::Form<Request>) -> impl Responder {
                     }],
                 },
                 Transaction {
-                    inputs: vec![
-                        chains.blocks[indexer as usize].transactions[0].outputs[0]
-                            .clone(),
-                    ],
+                    inputs: vec![chains.blocks[indexer as usize].transactions[0].outputs[0].clone()],
                     outputs: vec![
                         transaction::Output {
                             to_addr: req_body.originator.to_owned(),
@@ -112,15 +104,15 @@ async fn peertopeer(req_body: web::Form<Request>) -> impl Responder {
             ],
             difficulty,
         );
-        
         block.mine();
 
-        let mut prev_hash = block.hash.clone();
+        let prev_hash = block.hash.clone();
 
         TRUNCKHASH.lock().unwrap().push(prev_hash);
 
-        chains.update_with_block(block).expect("Failed to add block");
-                
+        chains
+            .update_with_block(block)
+            .expect("Failed to add block");
         unsafe { increase_degree() };
     }
     HttpResponse::Ok().body("Transaction Complete")
