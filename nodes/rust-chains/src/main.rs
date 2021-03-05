@@ -15,7 +15,7 @@ lazy_static! {
 }
 
 lazy_static! {
-    static ref TRUNCKHASH: Mutex<Vec<u8>> = Mutex::new(vec![0; 32]);
+    static ref TRUNCKHASH: Mutex<Vec<Vec<u8>>> = Mutex::new(vec![]);
 }
 
 static mut DEGREE: u32 = 0;
@@ -41,7 +41,7 @@ async fn peertopeer(req_body: web::Form<Request>) -> impl Responder {
         let mut block = Block::new(
             unsafe { DEGREE },
             now(),
-            TRUNCKHASH.lock().unwrap().clone(),
+            vec![0; 32],
             vec![Transaction {
                 inputs: vec![],
                 outputs: vec![
@@ -60,24 +60,30 @@ async fn peertopeer(req_body: web::Form<Request>) -> impl Responder {
 
         block.mine();
 
-        println!("Mined block {:?}", &block);
+        // println!("Mined block {:?}", &block);
 
-        //println!("{:?}", unsafe { &TRUNCKHASH });
+        let mut prev_hash = block.hash.clone();
 
+        TRUNCKHASH.lock().unwrap().push(prev_hash);
+        
         CHAIN
             .lock()
             .unwrap()
             .update_with_block(block)
             .expect("Failed to add block");
 
+        
         unsafe { increase_degree() };
     } else {
+
+        println!("Index is {:?}",unsafe{DEGREE});
         let indexer: u32 = unsafe { DEGREE } - 1;
-        println!("Test");
+        let mut last_hash = TRUNCKHASH.lock().unwrap()[indexer as usize].clone();
+        let mut chains = CHAIN.lock().unwrap();
         let mut block = Block::new(
             unsafe { DEGREE },
             now(),
-            TRUNCKHASH.lock().unwrap().clone(),
+            last_hash,
             vec![
                 Transaction {
                     inputs: vec![],
@@ -88,13 +94,13 @@ async fn peertopeer(req_body: web::Form<Request>) -> impl Responder {
                 },
                 Transaction {
                     inputs: vec![
-                        CHAIN.lock().unwrap().blocks[indexer as usize].transactions[0].outputs[0]
+                        chains.blocks[indexer as usize].transactions[0].outputs[0]
                             .clone(),
                     ],
                     outputs: vec![
                         transaction::Output {
                             to_addr: req_body.originator.to_owned(),
-                            value: CHAIN.lock().unwrap().blocks[0].transactions[0].outputs[0].value
+                            value: chains.blocks[0].transactions[0].outputs[0].value
                                 - req_body.value,
                         },
                         transaction::Output {
@@ -106,17 +112,15 @@ async fn peertopeer(req_body: web::Form<Request>) -> impl Responder {
             ],
             difficulty,
         );
-        println!("Test");
+        
         block.mine();
 
-        println!("Mined block {:?}", &block);
+        let mut prev_hash = block.hash.clone();
 
-        CHAIN
-            .lock()
-            .unwrap()
-            .update_with_block(block)
-            .expect("Failed to add block");
+        TRUNCKHASH.lock().unwrap().push(prev_hash);
 
+        chains.update_with_block(block).expect("Failed to add block");
+                
         unsafe { increase_degree() };
     }
     HttpResponse::Ok().body("Transaction Complete")
