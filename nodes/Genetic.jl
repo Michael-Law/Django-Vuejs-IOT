@@ -1,6 +1,7 @@
 using PyCall
 using Statistics
 using StatsBase
+using NLsolve
 
 # Function to calculate distance between two points on a sphere
 function haversine(long1::Float64, lat1::Float64, long2::Float64, lat2::Float64)
@@ -120,5 +121,19 @@ function initialMatrix(dict)
         end
     end
     return LocalisePlaces(AntColonyOptimisation(Normalize(HeuristicMatrix), 200), dict), LocaliseRegion(AntColonyOptimisation(Normalize(HeuristicMatrix), 200), dict)
+end
+
+function binsearch(dict, position)
+    HeuristicMatrix = Array{Float64}(undef, size(dict)[1], size(dict)[1])
+    SuitableBin = Vector{Float64}()
+    println(position)
+    for (index, element) in enumerate(dict)
+        latitude1, longitude1 = parsedata(dict, index)
+        latitude2, longitude2 = position[1], position[2] 
+        Distance = haversine(longitude1, latitude1, longitude2, latitude2)
+        GarbageAmount = suffixheuristics(convert(Float32, element["amount"]), convert(Float32, 0.0))
+        push!(SuitableBin, GarbageAmount * Distance)
+    end
+    return dict[argmin(SuitableBin)]["Location"]
 end
 

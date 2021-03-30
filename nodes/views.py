@@ -58,12 +58,13 @@ def OptimalPlaces(request):
     jl = Julia(compiled_modules=False)
     from julia import Main
     Main.include('./nodes/Genetic.jl')
+
     res, des = Main.initialMatrix(NonOptDict)
 
     return Response(des)
 
 
-@api_view(['POST'])
+@api_view()
 def NearestPlaces(request):
     with connection.cursor() as cursor:
         cursor.execute(
@@ -74,25 +75,23 @@ def NearestPlaces(request):
     NonOptDict = df.to_dict('records')
 
     """
-    Julia Api backend for genetic algorithm, which will input the 
+    Julia Api backend for genetic algorithm, which will input the
     dictionnary to be optimised.
     """
     from julia.api import Julia
     jl = Julia(compiled_modules=False)
     from julia import Main
 
-    data = request.data
-    feedback = requests.post(url, data=data)
+    # data = request.data
     Main.include('./nodes/Genetic.jl')
-    # res = Main.initialMatrix(NonOptDict)
-
+    data = (57.48358652376267, -20.260487410613507)
+    res = Main.binsearch(NonOptDict, data)
     return Response(res)
 
 
 @api_view(['POST'])
 def nearestnode(request):
     data = request.data
-    url = ''
-
+    url = '172.104.166.102:8080/transaction'
     feedback = requests.post(url, data=data)
     return feedback

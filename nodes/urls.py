@@ -11,5 +11,5 @@ urlpatterns = [
     path('', include(router.urls)),
     path('OptimalRoute/', OptimalRoute),
     path('OptimalPlaces/', OptimalPlaces),
-    path('NearestPlaces/',)
+    path('NearestPlaces/', NearestPlaces)
 ]
